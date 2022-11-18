@@ -2,6 +2,8 @@ from django.shortcuts import render,redirect
 from college import models,forms
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import Group
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.db.models import Sum
 # Create your views here.
 
 # main home page
@@ -121,3 +123,41 @@ def afterlogin(request):
             return render(request,'college/student_approval_pending.html')
         
         
+#Admin dashboard
+
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
+def admin_dashboard(request):
+    teachercount=models.Teacher.objects.all().filter(status=True).count()
+    pendingteachercount=models.Teacher.objects.all().filter(status=False).count()
+
+    studentcount=models.Student.objects.all().filter(status=True).count()
+    pendingstudentcount=models.Student.objects.all().filter(status=False).count()
+
+    teachersalary=models.Teacher.objects.filter(status=True).aggregate(Sum('salary',default=0))
+    pendingteachersalary=models.Teacher.objects.filter(status=False).aggregate(Sum('salary'))
+
+    studentfee=models.Student.objects.filter(status=True).aggregate(Sum('fee',default=0))
+    pendingstudentfee=models.Student.objects.filter(status=False).aggregate(Sum('fee'))
+
+    notice=models.Notice.objects.all()
+
+    #aggregate function return dictionary so fetch data from dictionay
+    mydict={
+        'teachercount':teachercount,
+        'pendingteachercount':pendingteachercount,
+
+        'studentcount':studentcount,
+        'pendingstudentcount':pendingstudentcount,
+
+        'teachersalary':teachersalary['salary__sum'],
+        'pendingteachersalary':pendingteachersalary['salary__sum'],
+
+        'studentfee':studentfee['fee__sum'],
+        'pendingstudentfee':pendingstudentfee['fee__sum'],
+
+        'notice':notice
+
+    }
+
+    return render(request,'college/admin_dashboard.html',context=mydict)

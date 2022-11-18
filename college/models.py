@@ -47,4 +47,7 @@ class Teacher(models.Model):
     
 
     
-    
+class Notice(models.Model):
+    date=models.DateField(auto_now=True)
+    by=models.CharField(max_length=20,null=True,default='college')
+    message=models.CharField(max_length=600)

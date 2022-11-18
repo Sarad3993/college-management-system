@@ -17,7 +17,8 @@ urlpatterns = [
     path('adminlogin', LoginView.as_view(template_name='college/adminlogin.html')),
     path('studentlogin', LoginView.as_view(template_name='college/studentlogin.html')),
     path('teacherlogin', LoginView.as_view(template_name='college/teacherlogin.html')),
-    
-    
+    path('afterlogin', views.afterlogin,name='afterlogin'),
+    path('logout', LogoutView.as_view(template_name='college/index.html'),name='logout'),
+    path('admin-dashboard', views.admin_dashboard,name='admin-dashboard'),
     
 ]
