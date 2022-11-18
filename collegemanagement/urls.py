@@ -20,5 +20,6 @@ urlpatterns = [
     path('afterlogin', views.afterlogin,name='afterlogin'),
     path('logout', LogoutView.as_view(template_name='college/index.html'),name='logout'),
     path('admin-dashboard', views.admin_dashboard,name='admin-dashboard'),
+    path('admin-teacher', views.admin_teacher_section,name='admin-teacher'),
     
 ]

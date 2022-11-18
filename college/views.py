@@ -161,3 +161,11 @@ def admin_dashboard(request):
     }
 
     return render(request,'college/admin_dashboard.html',context=mydict)
+
+
+# teacher section in admin panel
+
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
+def admin_teacher_section(request):
+    return render(request,'college/admin_teacher_section.html')
