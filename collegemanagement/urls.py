@@ -21,5 +21,10 @@ urlpatterns = [
     path('logout', LogoutView.as_view(template_name='college/index.html'),name='logout'),
     path('admin-dashboard', views.admin_dashboard,name='admin-dashboard'),
     path('admin-teacher', views.admin_teacher_section,name='admin-teacher'),
+    path('admin-add-teacher', views.admin_add_teacher,name='admin-add-teacher'),
+    path('admin-view-teacher', views.admin_view_teacher,name='admin-view-teacher'),
+    path('admin-approve-teacher', views.admin_approve_teacher,name='admin-approve-teacher'),
+    path('approve-teacher/<int:pk>', views.approve_teacher,name='approve-teacher'),
+    path('disapprove-teacher/<int:pk>', views.disapprove_teacher,name='disapprove-teacher'),
     
 ]
