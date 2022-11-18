@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from college import models,forms
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import Group
@@ -93,3 +93,31 @@ def student_signup(request):
 
         return HttpResponseRedirect('studentlogin')
     return render(request,'college/studentsignup.html',context=mydict)
+
+
+#for checking user is teacher, student or admin
+
+def is_admin(user):
+    return user.groups.filter(name='ADMIN').exists()
+def is_teacher(user):
+    return user.groups.filter(name='TEACHER').exists()
+def is_student(user):
+    return user.groups.filter(name='STUDENT').exists()
+
+def afterlogin(request):
+    if is_admin(request.user):
+        return redirect('admin-dashboard')
+    elif is_teacher(request.user):
+        accountapproval=models.Teacher.objects.all().filter(user_id=request.user.id,status=True)
+        if accountapproval:
+            return redirect('teacher-dashboard')
+        else:
+            return render(request,'college/teacher_approval_pending.html')
+    elif is_student(request.user):
+        accountapproval=models.Student.objects.all().filter(user_id=request.user.id,status=True)
+        if accountapproval:
+            return redirect('student-dashboard')
+        else:
+            return render(request,'college/student_approval_pending.html')
+        
+        
