@@ -253,4 +253,35 @@ def disapprove_teacher(request,pk):
     return redirect('admin-approve-teacher')
 
 
-#delete teacher from list of teachers too (cuz it is not deleted permanently, )
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
+def update_teacher(request,pk):
+    teacher=models.Teacher.objects.get(id=pk)
+    user=models.User.objects.get(id=teacher.user_id)
+
+    form1=forms.TeacherUserForm(instance=user)
+    form2=forms.TeacherFormAdditional(instance=teacher)
+    mydict={'form1':form1,'form2':form2}
+
+    if request.method=='POST':
+        form1=forms.TeacherUserForm(request.POST,instance=user)
+        form2=forms.TeacherFormAdditional(request.POST,instance=teacher)
+        if form1.is_valid() and form2.is_valid():
+            user=form1.save()
+            user.set_password(user.password)
+            user.save()
+            f2=form2.save(commit=False)
+            f2.status=True
+            f2.save()
+            return redirect('admin-view-teacher')
+    return render(request,'college/admin_update_teacher.html',context=mydict)
+
+
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
+def delete_teacher(request,pk):
+    teacher=models.Teacher.objects.get(id=pk)
+    user=models.User.objects.get(id=teacher.user_id)
+    user.delete()
+    teacher.delete()
+    return redirect('admin-view-teacher')

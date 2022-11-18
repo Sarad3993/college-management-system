@@ -26,5 +26,7 @@ urlpatterns = [
     path('admin-approve-teacher', views.admin_approve_teacher,name='admin-approve-teacher'),
     path('approve-teacher/<int:pk>', views.approve_teacher,name='approve-teacher'),
     path('disapprove-teacher/<int:pk>', views.disapprove_teacher,name='disapprove-teacher'),
+    path('update-teacher/<int:pk>', views.update_teacher,name='update-teacher'),
+     path('delete-teacher/<int:pk>', views.delete_teacher,name='delete-teacher'),
     
 ]
