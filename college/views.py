@@ -455,3 +455,17 @@ def take_attendance(request,faculty):
             return redirect('teacher-attendance')
     return render(request,'college/take_attendance.html',{'students':students,'attendanceform':attendanceform})
 
+# teacher view attendance
+@login_required(login_url='teacherlogin')
+@user_passes_test(is_teacher)
+def view_attendance(request,faculty):
+    form=forms.AskDateForm()
+    if request.method=='POST':
+        form=forms.AskDateForm(request.POST)
+        if form.is_valid():
+            date=form.cleaned_data['date']
+            attendancedata=models.Attendance.objects.all().filter(faculty=faculty,date=date)
+            studentdata=models.Student.objects.all().filter(faculty=faculty)
+            attendance_list=zip(attendancedata,studentdata)
+            return render(request,'college/view_attendance.html',{'attendance_list':attendance_list,'faculty':faculty,'date':date})
+    return render(request,'college/view_attendance_date.html',{'faculty':faculty,'form':form})
