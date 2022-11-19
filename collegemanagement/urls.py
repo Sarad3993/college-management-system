@@ -40,5 +40,7 @@ urlpatterns = [
     path('delete-notice/<int:pk>', views.admin_delete_notice,name='delete-notice'),
     path('teacher-dashboard', views.teacher_dashboard,name='teacher-dashboard'),
     path('teacher-notice', views.teacher_notice,name='teacher-notice'),
+    path('teacher-attendance', views.teacher_attendance,name='teacher-attendance'),
+    path('teacher-take-attendance/<str:faculty>', views.take_attendance,name='teacher-take-attendance'),
     
 ]

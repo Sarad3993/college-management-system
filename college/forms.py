@@ -40,3 +40,14 @@ class NoticeForm(forms.ModelForm):
     class Meta:
         model = models.Notice
         fields = '__all__'
+        
+
+# attendance related form 
+
+attendance_choices = (('Present','Present'),('Absent','Absent'))
+class AttendanceForm(forms.Form):
+    present = forms.ChoiceField(choices=attendance_choices)
+    date = forms.DateField()
+    
+class AskDateForm(forms.Form):
+    date = forms.DateField()

@@ -25,7 +25,6 @@ class Student(models.Model):
         return self.user.id
     
     
-    
 class Teacher(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     salary= models.PositiveIntegerField(blank=False)
@@ -51,3 +50,10 @@ class Notice(models.Model):
     by=models.CharField(max_length=20,blank=True,default='college')
     topic = models.CharField(max_length=100,blank=True)
     message=models.CharField(max_length=600)
+
+
+class Attendance(models.Model):
+    faculty = models.CharField(max_length=10)
+    roll = models.CharField(max_length=10, blank=True)
+    present = models.CharField(max_length=10)
+    date = models.DateField()

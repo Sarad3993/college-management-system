@@ -427,3 +427,31 @@ def teacher_notice(request):
             form.save()
             return redirect('teacher-dashboard')
     return render(request,'college/teacher_notice.html',{'form':form})
+
+# teacher attendance view
+@login_required(login_url='teacherlogin')
+@user_passes_test(is_teacher)
+def teacher_attendance(request):
+    return render(request,'college/teacher_attendance.html')
+
+# teacher take attendance
+@login_required(login_url='teacherlogin')
+@user_passes_test(is_teacher)
+def take_attendance(request,faculty):
+    students=models.Student.objects.all().filter(faculty=faculty)
+    attendanceform=forms.AttendanceForm()
+    if request.method=='POST':
+        form=forms.AttendanceForm(request.POST)
+        if form.is_valid():
+            Attendances=request.POST.getlist('present')
+            date=form.cleaned_data['date']
+            for i in range(len(Attendances)):
+                AttendanceModel=models.Attendance()
+                AttendanceModel.faculty=faculty
+                AttendanceModel.date=date
+                AttendanceModel.present=Attendances[i]
+                AttendanceModel.roll=students[i].roll
+                AttendanceModel.save()
+            return redirect('teacher-attendance')
+    return render(request,'college/take_attendance.html',{'students':students,'attendanceform':attendanceform})
+

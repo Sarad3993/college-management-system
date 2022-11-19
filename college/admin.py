@@ -12,7 +12,11 @@ class TeacherAdmin(admin.ModelAdmin):
 class NoticeAdmin(admin.ModelAdmin):
     pass
 
+class AttendanceAdmin(admin.ModelAdmin):
+    pass
+
 
 admin.site.register(Student,StudentAdmin)
 admin.site.register(Teacher,TeacherAdmin)
 admin.site.register(Notice,NoticeAdmin)
+admin.site.register(Attendance, AttendanceAdmin)
