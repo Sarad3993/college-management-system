@@ -185,7 +185,6 @@ def admin_dashboard(request):
 
 # teacher section in admin panel
 
-
 @login_required(login_url="adminlogin")
 @user_passes_test(is_admin)
 def admin_teacher_section(request):
@@ -285,3 +284,11 @@ def delete_teacher(request,pk):
     user.delete()
     teacher.delete()
     return redirect('admin-view-teacher')
+
+
+# student section in admin panel
+
+@login_required(login_url="adminlogin")
+@user_passes_test(is_admin)
+def admin_student_section(request):
+    return render(request, "college/admin_student_section.html")

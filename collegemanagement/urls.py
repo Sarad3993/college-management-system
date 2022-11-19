@@ -27,6 +27,8 @@ urlpatterns = [
     path('approve-teacher/<int:pk>', views.approve_teacher,name='approve-teacher'),
     path('disapprove-teacher/<int:pk>', views.disapprove_teacher,name='disapprove-teacher'),
     path('update-teacher/<int:pk>', views.update_teacher,name='update-teacher'),
-     path('delete-teacher/<int:pk>', views.delete_teacher,name='delete-teacher'),
+    path('delete-teacher/<int:pk>', views.delete_teacher,name='delete-teacher'),
+    path('admin-student', views.admin_student_section,name='admin-student'),
+    
     
 ]
