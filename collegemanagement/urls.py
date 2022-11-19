@@ -31,5 +31,8 @@ urlpatterns = [
     path('admin-student', views.admin_student_section,name='admin-student'),
     path('admin-add-student', views.admin_add_student,name='admin-add-student'),
     path('admin-view-student', views.admin_view_student,name='admin-view-student'),
+    path('admin-approve-student', views.admin_approve_student,name='admin-approve-student'),
+    path('approve-student/<int:pk>', views.approve_student,name='approve-student'),
+    path('disapprove-student/<int:pk>', views.disapprove_student,name='disapprove-student'),
     
 ]
