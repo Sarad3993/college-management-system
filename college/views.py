@@ -147,37 +147,30 @@ def admin_dashboard(request):
     teachersalary = models.Teacher.objects.filter(status=True).aggregate(
         Sum("salary", default=0)
     )
-    pendingteachersalary = models.Teacher.objects.filter(status=False).aggregate(
-        Sum("salary")
-    )
 
     studentfee = models.Student.objects.filter(status=True).aggregate(
         Sum("fee", default=0)
     )
-    pendingstudentfee = models.Student.objects.filter(status=False).aggregate(
-        Sum("fee")
-    )
 
     notice = models.Notice.objects.all()
+    complain = models.Complain.objects.all()
 
-    # aggregate function return dictionary so fetch data from dictionay
+    # aggregate function returns dictionary so fetch data from dictionay
     mydict = {
         "teachercount": teachercount,
         "pendingteachercount": pendingteachercount,
         "studentcount": studentcount,
         "pendingstudentcount": pendingstudentcount,
         "teachersalary": teachersalary["salary__sum"],
-        "pendingteachersalary": pendingteachersalary["salary__sum"],
         "studentfee": studentfee["fee__sum"],
-        "pendingstudentfee": pendingstudentfee["fee__sum"],
         "notice": notice,
+        "complain":complain
     }
 
     return render(request, "college/admin_dashboard.html", context=mydict)
 
 
 # teacher section in admin panel
-
 @login_required(login_url="adminlogin")
 @user_passes_test(is_admin)
 def admin_teacher_section(request):
@@ -185,7 +178,6 @@ def admin_teacher_section(request):
 
 
 # Add teacher by admin
-
 @login_required(login_url="adminlogin")
 @user_passes_test(is_admin)
 def admin_add_teacher(request):
@@ -280,7 +272,6 @@ def delete_teacher(request,pk):
 
 
 # student section in admin panel
-
 @login_required(login_url="adminlogin")
 @user_passes_test(is_admin)
 def admin_student_section(request):
@@ -377,7 +368,6 @@ def delete_student(request,pk):
 
 
 # notice by admin
-
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)
 def admin_notice(request):
@@ -400,8 +390,7 @@ def admin_delete_notice(request,pk):
     return redirect('admin-dashboard')
 
 
-# teacher dashboard view
-
+# teacher dashboard
 @login_required(login_url='teacherlogin')
 @user_passes_test(is_teacher)
 def teacher_dashboard(request):
@@ -415,6 +404,7 @@ def teacher_dashboard(request):
     }
     return render(request,'college/teacher_dashboard.html',context=mydict)
 
+#notice by teacher
 @login_required(login_url='teacherlogin')
 @user_passes_test(is_teacher)
 def teacher_notice(request):
@@ -472,16 +462,40 @@ def view_attendance(request,faculty):
 
 
 # for student dashboard
-
 @login_required(login_url='studentlogin')
 @user_passes_test(is_student)
 def student_dashboard(request):
     studentdata=models.Student.objects.all().filter(status=True,user_id=request.user.id)
     notice=models.Notice.objects.all()
+    complain = models.Complain.objects.all()
     mydict={
         'roll':studentdata[0].roll,
         'phone_no':studentdata[0].phone_no,
         'fee':studentdata[0].fee,
-        'notice':notice
+        'notice':notice,
+        'complain':complain
     }
     return render(request,'college/student_dashboard.html',context=mydict)
+
+
+# complain by student
+@login_required(login_url='studentlogin')
+@user_passes_test(is_student)
+def student_complain(request):
+    form=forms.ComplainForm()
+    if request.method=='POST':
+        form=forms.ComplainForm(request.POST)
+        if form.is_valid():
+            form=form.save(commit=False)
+            form.by=request.user.first_name
+            form.save()
+            return redirect('student-dashboard')
+    return render(request,'college/student_complain.html',{'form':form})
+
+
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
+def admin_delete_complain(request,pk):
+    complain=models.Complain.objects.get(id=pk)
+    complain.delete()
+    return redirect('admin-dashboard')

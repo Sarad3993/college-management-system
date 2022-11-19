@@ -6,15 +6,33 @@
 <head>
   <style media="screen">
     .alert {
-      margin-left: 25%;
+      margin-left: 6%;
       margin-right: 25%;
       padding: 20px;
-      background-color: #f44336;
+      background-color: #bf1741;
       color: white;
+    }
+    .alert-complain{
+      margin-left: 6%;
+      margin-right: 25%;
+      padding: 20px;
+      background-color: #11b8a1;
+      color: white;
+      border-radius:5px;
     }
 
     .w3-panel p {
       padding-top: 10px;
+    }
+    .w3-panel{
+    margin-left: 6%;
+    margin-right: 25%;
+    }
+
+    .w3-panel h4 {
+      padding-top: 10px;
+      text-align:center;
+      
     }
 
   </style>
@@ -27,7 +45,7 @@
 
 <br><br>
 <div class="w3-panel w3-black ">
-  <p>Notice Board</p>
+  <p style="padding:15px;"><b> Notice Board </b></p>
 </div><br>
 
 {%for n in notice%}
@@ -35,5 +53,19 @@
   <strong>Posted on : {{n.date}} </strong><br><b>By : {{n.by}}</b> <br> <b>Topic : {{n.topic}}</b><br> {{n.message}}
 </div>
 {%endfor%}
+<hr>
+
+<br><br>
+<div class="w3-panel w3-black">
+  <p style="padding:15px;"> <b> My Complains </b></p>
+</div><br>
+
+{%for c in complain%}
+<div class="alert-complain">
+  <b>Posted on :</b> {{c.date}} <br><b>By :</b> {{c.by}} <br> <b>Topic :</b> {{c.topic}} <br> {{c.message}}
+</div>
+<br>
+{%endfor%}
+<hr>
 
 {% endblock %}

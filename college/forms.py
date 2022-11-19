@@ -51,3 +51,10 @@ class AttendanceForm(forms.Form):
     
 class AskDateForm(forms.Form):
     date = forms.DateField()
+    
+    
+# complain related form
+class ComplainForm(forms.ModelForm):
+    class Meta:
+        model = models.Complain
+        fields = '__all__'

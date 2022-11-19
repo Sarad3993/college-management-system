@@ -57,3 +57,10 @@ class Attendance(models.Model):
     roll = models.CharField(max_length=10, blank=True)
     present = models.CharField(max_length=10)
     date = models.DateField()
+    
+    
+class Complain(models.Model):
+    date=models.DateField(auto_now=True)
+    by=models.CharField(max_length=20,blank=True,default='college')
+    topic = models.CharField(max_length=100,blank=True)
+    message=models.CharField(max_length=600)

@@ -6,15 +6,25 @@
 <head>
   <style media="screen">
     .alert {
-      margin-left: 25%;
+      margin-left: 6%;
       margin-right: 25%;
       padding: 20px;
-      background-color: #f44336;
+      background-color: #bf1741;
       color: white;
     }
 
     .w3-panel p {
       padding-top: 10px;
+    }
+    .w3-panel{
+    margin-left: 6%;
+      margin-right: 25%;
+    }
+
+    .w3-panel h4 {
+      padding-top: 10px;
+      text-align:center;
+      
     }
 
   </style>
@@ -28,17 +38,15 @@
 
 <br><br>
 <div class="w3-panel w3-black ">
-  <p>Notice Board</p>
+  <h4 style="padding:15px;"><b> Notice Board </b></h4>
 </div><br>
+
 {%for n in notice%}
 
 <div class="alert">
-  <strong>Posted on : {{n.date}} </strong><br><b>By : {{n.by}}</b> <br> <b>Topic : {{n.topic}}</b><br> {{n.message}}
+  <b>Posted on :</b> {{n.date}} </s><br><b>By :</b> {{n.by}} <br> <b>Topic :</b> {{n.topic}}<br> {{n.message}}
 </div>
-
 {%endfor%}
-
-
-
+<hr>
 
 {% endblock %}

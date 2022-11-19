@@ -61,14 +61,15 @@
 
 <body>
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-  <div class="container">
-    <div class="row">
+  <div class="container-fluid">
+
+    <div class="row" style="margin-left:4%;">
       <div class="col-md-4 col-xl-3">
         <div class="card bg-c-blue order-card">
           <div class="card-block">
             <h6 class="m-b-20">Name</h6>
             <h2 class="text-right"><i class="fas fa-user-tie f-left"></i></h2>
-            <p><span style="font-size: 20px;">{{request.user.first_name}}&nbsp;{{request.user.last_name}}</span></p>
+            <p>&emsp;<span style="font-size: 18px;">{{request.user.first_name}}&nbsp;{{request.user.last_name}}</span></p>
           </div>
         </div>
       </div>
@@ -78,7 +79,7 @@
           <div class="card-block">
             <h6 class="m-b-20">Contact</h6>
             <h2 class="text-right"><i class="fas fa-mobile-alt f-left"></i></h2>
-            <p><span style="font-size: 20px;">{{phone_no}}</span></p>
+            <p>&emsp;<span style="font-size: 18px;">{{phone_no}}</span></p>
 
           </div>
         </div>
@@ -89,23 +90,28 @@
           <div class="card-block">
             <h6 class="m-b-20">Join Date</h6>
             <h2 class="text-right"><i class="fas fa-calendar-alt f-left"></i></h2>
-            <p><span style="font-size: 20px;">{{date}}</span></p>
+            <p>&emsp;<span style="font-size: 18px;">{{date}}</span></p>
           </div>
         </div>
       </div>
+    </div>
+
+    <div class="row" style="margin-left:4%;">
 
       <div class="col-md-4 col-xl-3">
         <div class="card bg-c-pink order-card">
           <div class="card-block">
             <h6 class="m-b-20">Salary</h6>
             <h2 class="text-right"><i class="fas fa-dollar f-left"></i></h2>
-            <p><span style="font-size: 20px;">{{salary}}</span></p>
+            <p>&emsp;<span style="font-size: 18px;">{{salary}}</span></p>
           </div>
         </div>
       </div>
-    </div>
-  </div>
 
+    </div>
+
+    </div>
+  
   <script src="http://netdna.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
   <script type="text/javascript">
 
