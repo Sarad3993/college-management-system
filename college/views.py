@@ -139,8 +139,6 @@ def afterlogin(request):
 
 
 # Admin dashboard
-
-
 @login_required(login_url="adminlogin")
 @user_passes_test(is_admin)
 def admin_dashboard(request):
@@ -380,3 +378,27 @@ def delete_student(request,pk):
     user.delete()
     student.delete()
     return redirect('admin-view-student')
+
+
+# notice by admin
+
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
+def admin_notice(request):
+    form=forms.NoticeForm()
+    if request.method=='POST':
+        form=forms.NoticeForm(request.POST)
+        if form.is_valid():
+            form=form.save(commit=False)
+            form.by=request.user.first_name
+            form.save()
+            return redirect('admin-dashboard')
+    return render(request,'college/admin_notice.html',{'form':form})
+
+
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
+def admin_delete_notice(request,pk):
+    notice=models.Notice.objects.get(id=pk)
+    notice.delete()
+    return redirect('admin-dashboard')

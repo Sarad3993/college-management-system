@@ -36,6 +36,7 @@ urlpatterns = [
     path('disapprove-student/<int:pk>', views.disapprove_student,name='disapprove-student'),
     path('update-student/<int:pk>', views.update_student,name='update-student'),
     path('delete-student/<int:pk>', views.delete_student,name='delete-student'),
-    
+    path('admin-notice', views.admin_notice,name='admin-notice'),
+    path('delete-notice/<int:pk>', views.admin_delete_notice,name='delete-notice'),
     
 ]

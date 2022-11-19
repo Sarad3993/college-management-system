@@ -34,3 +34,9 @@ class StudentFormAdditional(forms.ModelForm):
         model=models.Student
         fields=['roll','faculty','phone_no','address','fee','status']
     
+
+# notice related form
+class NoticeForm(forms.ModelForm):
+    class Meta:
+        model = models.Notice
+        fields = '__all__'

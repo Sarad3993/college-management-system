@@ -46,8 +46,8 @@ class Teacher(models.Model):
         return self.user.first_name + " " + self.user.last_name
     
 
-    
 class Notice(models.Model):
     date=models.DateField(auto_now=True)
-    by=models.CharField(max_length=20,null=True,default='college')
+    by=models.CharField(max_length=20,blank=True,default='college')
+    topic = models.CharField(max_length=100,blank=True)
     message=models.CharField(max_length=600)
