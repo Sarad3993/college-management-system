@@ -11,6 +11,7 @@
       padding: 20px;
       background-color: #bf1741;
       color: white;
+      font-weight:normal;
     }
     .alert-complain{
       margin-left: 6%;
@@ -19,6 +20,7 @@
       background-color: #11b8a1;
       color: white;
       border-radius:5px;
+      font-weight:normal;
     }
 
     .w3-panel p {
@@ -49,11 +51,10 @@
 </div><br>
 
 {%for n in notice%}
-<div class="alert">
-  <strong>Posted on : {{n.date}} </strong><br><b>By : {{n.by}}</b> <br> <b>Topic : {{n.topic}}</b><br> {{n.message}}
+<div class="alert bg-c-blue">
+  <b>Posted on :</b> {{n.date}} <br><b>By :</b> {{n.by}} <br> <b>Topic :</b> {{n.topic}}<br> {{n.message}}
 </div>
 {%endfor%}
-<hr>
 
 <br><br>
 <div class="w3-panel w3-black">
@@ -61,7 +62,7 @@
 </div><br>
 
 {%for c in complain%}
-<div class="alert-complain">
+<div class="alert-complain bg-c-pink">
   <b>Posted on :</b> {{c.date}} <br><b>By :</b> {{c.by}} <br> <b>Topic :</b> {{c.topic}} <br> {{c.message}}
 </div>
 <br>

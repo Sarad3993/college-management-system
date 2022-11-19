@@ -27,34 +27,17 @@
 
     .left_area h3 {
       color: #fff;
-      margin: 0px;
+      margin-top: -11px;
       text-transform: uppercase;
       font-size: 22px;
       font-weight: 900;
     }
 
-    .left_area span {
-      color: #19B3D3;
-    }
-
-    .logout_btn {
-      padding: 5px;
-      background: #dd3b30;
-      text-decoration: none;
+    .logout_icon {
       float: right;
-      margin-top: -30px;
-      margin-right: 40px;
-      border-radius: 2px;
-      font-size: 15px;
-      font-weight: 600;
-      color: #fff;
-      transition: 0.5s;
-
-    }
-
-    .logout_btn:hover {
-      background: white;
-      color:black;
+      color: white;
+      cursor: pointer;
+      font-size: 1.7rem;
     }
 
     .sidebar {
@@ -108,10 +91,6 @@
       transition-property: color;
     }
 
-    label #sidebar_btn:hover {
-      color: #19B3D3;
-    }
-
     #check:checked~.sidebar {
       left: -190px;
     }
@@ -143,25 +122,25 @@
       display: none;
     }
   </style>
+
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">    
-
-
 </head>
 
 <body>
-
   <input type="checkbox" id="check">
   <!--header area start-->
   <header>
-    <label for="check">
+
+    <a href="/logout"><span class="bi bi-box-arrow-right logout_icon"></span></a>
+
+     <label for="check">
       <i class="fas fa-bars" id="sidebar_btn"></i>
     </label>
+
     <div class="left_area">
-      <h3>CMS - Student</h3>
-    </div>
-    <div class="right_area" style="text-decoration:none">
-      <a href="/logout" class="logout_btn">Logout</a>
+      <h3>CMS - Admin Panel</h3>
     </div>
   </header>
   <!--header area end-->

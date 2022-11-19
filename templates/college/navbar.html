@@ -21,6 +21,7 @@
       }
       .navbar{
         background-color:black;
+        padding:15px;
       }
 
       .navbar-brand {
@@ -31,11 +32,19 @@
       .navbar-brand:hover{
         color:white;
       }
-      .nav-item{
+
+     .nav-item{
+        display: block; 
         color:white;
+        font-size: 17px;
+        padding: 5px 5px;
+        border-radius: 30px;
+        text-decoration: none; 
       }
-      .nav-link:hover{
-        color:white;
+
+      .nav-item:hover{
+        background-color:white;
+        color:black;
       }
     </style>
   </head>
@@ -51,7 +60,7 @@
           <div class="navbar-nav"></div>
 
           <div class="navbar-nav">
-            <a href="/" class="nav-item nav-link active">Home</a>
+            <a href="/" class="nav-item nav-link">Home</a>
             <a href="/adminclick" class="nav-item nav-link">Admin</a>
             <a href="/teacherclick" class="nav-item nav-link">Teacher</a>
             <a href="/studentclick" class="nav-item nav-link">Student</a>

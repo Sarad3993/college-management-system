@@ -398,6 +398,7 @@ def teacher_dashboard(request):
     notice=models.Notice.objects.all()
     mydict={
         'salary':teacherdata[0].salary,
+        'address':teacherdata[0].address,
         'phone_no':teacherdata[0].phone_no,
         'date':teacherdata[0].joindate,
         'notice':notice
@@ -470,6 +471,8 @@ def student_dashboard(request):
     complain = models.Complain.objects.all()
     mydict={
         'roll':studentdata[0].roll,
+        'faculty':studentdata[0].faculty,
+        'address':studentdata[0].address,
         'phone_no':studentdata[0].phone_no,
         'fee':studentdata[0].fee,
         'notice':notice,

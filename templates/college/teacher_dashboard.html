@@ -11,6 +11,7 @@
       padding: 20px;
       background-color: #bf1741;
       color: white;
+      font-weight:normal;
     }
 
     .w3-panel p {
@@ -43,7 +44,7 @@
 
 {%for n in notice%}
 
-<div class="alert">
+<div class="alert bg-c-blue">
   <b>Posted on :</b> {{n.date}} </s><br><b>By :</b> {{n.by}} <br> <b>Topic :</b> {{n.topic}}<br> {{n.message}}
 </div>
 {%endfor%}
