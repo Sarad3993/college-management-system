@@ -121,17 +121,13 @@ def afterlogin(request):
     if is_admin(request.user):
         return redirect("admin-dashboard")
     elif is_teacher(request.user):
-        accountapproval = models.Teacher.objects.all().filter(
-            user_id=request.user.id, status=True
-        )
+        accountapproval = models.Teacher.objects.all().filter(user_id=request.user.id, status=True)
         if accountapproval:
             return redirect("teacher-dashboard")
         else:
             return render(request, "college/teacher_approval_pending.html")
     elif is_student(request.user):
-        accountapproval = models.Student.objects.all().filter(
-            user_id=request.user.id, status=True
-        )
+        accountapproval = models.Student.objects.all().filter(user_id=request.user.id, status=True)
         if accountapproval:
             return redirect("student-dashboard")
         else:
@@ -402,3 +398,19 @@ def admin_delete_notice(request,pk):
     notice=models.Notice.objects.get(id=pk)
     notice.delete()
     return redirect('admin-dashboard')
+
+
+# teacher dashboard view
+
+@login_required(login_url='teacherlogin')
+@user_passes_test(is_teacher)
+def teacher_dashboard(request):
+    teacherdata=models.Teacher.objects.all().filter(status=True,user_id=request.user.id)
+    notice=models.Notice.objects.all()
+    mydict={
+        'salary':teacherdata[0].salary,
+        'phone_no':teacherdata[0].phone_no,
+        'date':teacherdata[0].joindate,
+        'notice':notice
+    }
+    return render(request,'college/teacher_dashboard.html',context=mydict)
