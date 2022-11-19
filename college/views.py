@@ -469,3 +469,19 @@ def view_attendance(request,faculty):
             attendance_list=zip(attendancedata,studentdata)
             return render(request,'college/view_attendance.html',{'attendance_list':attendance_list,'faculty':faculty,'date':date})
     return render(request,'college/view_attendance_date.html',{'faculty':faculty,'form':form})
+
+
+# for student dashboard
+
+@login_required(login_url='studentlogin')
+@user_passes_test(is_student)
+def student_dashboard(request):
+    studentdata=models.Student.objects.all().filter(status=True,user_id=request.user.id)
+    notice=models.Notice.objects.all()
+    mydict={
+        'roll':studentdata[0].roll,
+        'phone_no':studentdata[0].phone_no,
+        'fee':studentdata[0].fee,
+        'notice':notice
+    }
+    return render(request,'college/student_dashboard.html',context=mydict)

@@ -22,7 +22,6 @@
       background: #22242A;
       padding: 20px;
       width: 100%;
-
       z-index: 1;
     }
 
@@ -168,7 +167,7 @@
       <h3>CMS - Admin Panel</h3>
     </div>
     <div class="right_area">
-      <a href="/logout" class="logout_btn">Logout</a>
+      <a href="/logout" class="logout_btn" style="text-decoration:none">Logout</a>
     </div>
   </header>
   <!--header area end-->
@@ -182,10 +181,10 @@
 
     </center>
 
-    <a href="/admin-dashboard"><i class="fas fa-desktop"></i><span>Dashboard</span></a>
-    <a href="/admin-teacher"><i class="fas fa-chalkboard-teacher"></i><span>Teacher</span></a>
-    <a href="/admin-student"><i class="fas fa-user-graduate"></i><span>Student</span></a>
-    <a href="/admin-notice"><i class="fas fa-bullhorn"></i><span>Notice</span></a>
+    <a href="/admin-dashboard" style="text-decoration:none"><i class="fas fa-desktop"></i><span>Dashboard</span></a>
+    <a href="/admin-teacher" style="text-decoration:none"><i class="fas fa-chalkboard-teacher"></i><span>Teacher</span></a>
+    <a href="/admin-student" style="text-decoration:none"><i class="fas fa-user-graduate"></i><span>Student</span></a>
+    <a href="/admin-notice" style="text-decoration:none"><i class="fas fa-bullhorn"></i><span>Notice</span></a>
 
 
   </div>
@@ -198,9 +197,6 @@
 
     {% endblock  %}
 
-
-    <br><br><br>
-    {% include "college/footer.html" %}
   </div>
   
 </body>

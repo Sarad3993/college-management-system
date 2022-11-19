@@ -43,6 +43,7 @@ urlpatterns = [
     path('teacher-attendance', views.teacher_attendance,name='teacher-attendance'),
     path('teacher-take-attendance/<str:faculty>', views.take_attendance,name='teacher-take-attendance'),
     path('teacher-view-attendance/<str:faculty>', views.view_attendance,name='teacher-view-attendance'),
+    path('student-dashboard', views.student_dashboard,name='student-dashboard'),
     
     
 ]
