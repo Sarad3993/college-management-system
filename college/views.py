@@ -292,3 +292,36 @@ def delete_teacher(request,pk):
 @user_passes_test(is_admin)
 def admin_student_section(request):
     return render(request, "college/admin_student_section.html")
+
+
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
+def admin_add_student(request):
+    form1=forms.StudentUserForm()
+    form2=forms.StudentFormAdditional()
+    mydict={'form1':form1,'form2':form2}
+    if request.method=='POST':
+        form1=forms.StudentUserForm(request.POST)
+        form2=forms.StudentFormAdditional(request.POST)
+        if form1.is_valid() and form2.is_valid():
+            print("form is valid")
+            user=form1.save()
+            user.set_password(user.password)
+            user.save()
+
+            f2=form2.save(commit=False)
+            f2.user=user
+            f2.status=True
+            f2.save()
+
+            student_group = Group.objects.get_or_create(name='STUDENT')
+            student_group[0].user_set.add(user)
+        return HttpResponseRedirect('admin-student')
+    return render(request,'college/admin_add_student.html',context=mydict)
+
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
+def admin_view_student(request):
+    students=models.Student.objects.all().filter(status=True)
+    return render(request,'college/admin_view_student.html',{'students':students})
+

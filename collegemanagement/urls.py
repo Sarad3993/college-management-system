@@ -29,6 +29,7 @@ urlpatterns = [
     path('update-teacher/<int:pk>', views.update_teacher,name='update-teacher'),
     path('delete-teacher/<int:pk>', views.delete_teacher,name='delete-teacher'),
     path('admin-student', views.admin_student_section,name='admin-student'),
-    
+    path('admin-add-student', views.admin_add_student,name='admin-add-student'),
+    path('admin-view-student', views.admin_view_student,name='admin-view-student'),
     
 ]
