@@ -1,6 +1,5 @@
-{% extends 'college/adminbase.html' %}
+{% extends 'college/teacherbase.html' %}
 {% load widget_tweaks %}
-
 {% block content %}
 
 <head>
@@ -50,8 +49,6 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 </head>
-
-
 <form method="post">
   {% csrf_token %}
   <div class="container register-form">
@@ -59,7 +56,6 @@
       <div class="note">
         <p>Announce Notice</p>
       </div>
-
       <div class="form-content">
         <div class="row">
           <div class="col-md-12">
@@ -71,19 +67,18 @@
             <div class="form-group">
               {% render_field form.message class="form-control" placeholder="Write Message Here" %}
             </div>
-
+            
             <div class="form-group">
               {% render_field form.by type="hidden"  class="form-control" placeholder="Your Name" %}
             </div>
           </div>
 
         </div>
+
         <button type="submit" class="btnSubmit">Submit</button>
       </div>
     </div>
   </div>
 
 </form>
-
-
 {% endblock content %}
