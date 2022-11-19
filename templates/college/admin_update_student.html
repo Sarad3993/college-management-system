@@ -1,5 +1,8 @@
 {% extends 'college/adminbase.html' %}
+
 {% load widget_tweaks %}
+
+
 
 {% block content %}
 
@@ -45,12 +48,13 @@
 
 </head>
 
+
 <form method="post">
   {% csrf_token %}
   <div class="container register-form">
     <div class="form">
       <div class="note">
-        <p>New Admission of Student</p>
+        <p>Update Student Details</p>
       </div>
 
       <div class="form-content">
@@ -93,12 +97,13 @@
             </div>
           </div>
         </div>
-        
+
         <button type="submit" class="btnSubmit">Submit</button>
       </div>
     </div>
   </div>
 
 </form>
+
 
 {% endblock %}

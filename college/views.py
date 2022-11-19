@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import Group
 from django.db.models import Sum
 from django.http import HttpResponseRedirect
-from django.shortcuts import redirect, render , reverse
+from django.shortcuts import redirect, render
 from college import forms, models
 
 # Create your views here.
@@ -238,7 +238,7 @@ def approve_teacher(request,pk):
     teacher=models.Teacher.objects.get(id=pk)
     teacher.status=True
     teacher.save()
-    return redirect(reverse('admin-approve-teacher'))
+    return redirect('admin-approve-teacher')
 
 
 @login_required(login_url='adminlogin')
@@ -349,3 +349,34 @@ def disapprove_student(request,pk):
     user.delete()
     student.delete()
     return redirect('admin-approve-student')
+
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
+def update_student(request,pk):
+    student=models.Student.objects.get(id=pk)
+    user=models.User.objects.get(id=student.user_id)
+    form1=forms.StudentUserForm(instance=user)
+    form2=forms.StudentFormAdditional(instance=student)
+    mydict={'form1':form1,'form2':form2}
+    if request.method=='POST':
+        form1=forms.StudentUserForm(request.POST,instance=user)
+        form2=forms.StudentFormAdditional(request.POST,instance=student)
+        if form1.is_valid() and form2.is_valid():
+            user=form1.save()
+            user.set_password(user.password)
+            user.save()
+            f2=form2.save(commit=False)
+            f2.status=True
+            f2.save()
+            return redirect('admin-view-student')
+    return render(request,'college/admin_update_student.html',context=mydict)
+
+
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
+def delete_student(request,pk):
+    student=models.Student.objects.get(id=pk)
+    user=models.User.objects.get(id=student.user_id)
+    user.delete()
+    student.delete()
+    return redirect('admin-view-student')

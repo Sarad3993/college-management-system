@@ -34,5 +34,8 @@ urlpatterns = [
     path('admin-approve-student', views.admin_approve_student,name='admin-approve-student'),
     path('approve-student/<int:pk>', views.approve_student,name='approve-student'),
     path('disapprove-student/<int:pk>', views.disapprove_student,name='disapprove-student'),
+    path('update-student/<int:pk>', views.update_student,name='update-student'),
+    path('delete-student/<int:pk>', views.delete_student,name='delete-student'),
+    
     
 ]
