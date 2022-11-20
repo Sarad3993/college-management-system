@@ -26,16 +26,18 @@
     .w3-panel p {
       padding-top: 10px;
     }
-    .w3-panel{
-    margin-left: 6%;
-    margin-right: 25%;
-    }
 
     .w3-panel h4 {
       padding-top: 10px;
       text-align:center;
       
     }
+    .w3-panel{
+    margin-left: 6%;
+    margin-right: 25%;
+    }
+
+   
 
   </style>
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -46,8 +48,8 @@
 {%include 'college/student_dashboard_cards.html'%}
 
 <br><br>
-<div class="w3-panel w3-black ">
-  <p style="padding:15px;"><b> Notice Board </b></p>
+<div class="w3-panel w3-black">
+  <h4 style="padding:15px;">  <b> Notice Board <b> </h4>
 </div><br>
 
 {%for n in notice%}
@@ -58,7 +60,7 @@
 
 <br><br>
 <div class="w3-panel w3-black">
-  <p style="padding:15px;"> <b> My Complains </b></p>
+  <h4 style="padding:15px;"> <b> My Complains </b></h4>
 </div><br>
 
 {%for c in complain%}
