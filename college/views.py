@@ -4,7 +4,6 @@ from django.db.models import Sum
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from college import forms, models
-
 # Create your views here.
 
 # main home page
@@ -20,13 +19,11 @@ def admin_click_view(request):
         return HttpResponseRedirect("afterlogin")
     return render(request, "college/adminclick.html")
 
-
 # for redirecting to teacher login/signup button
 def teacher_click_view(request):
     if request.user.is_authenticated:
         return HttpResponseRedirect("afterlogin")
     return render(request, "college/teacherclick.html")
-
 
 # for redirecting to student login/signup button
 def student_click_view(request):
@@ -36,8 +33,6 @@ def student_click_view(request):
 
 
 # admin signup
-
-
 def admin_signup(request):
     form = forms.AdminSignupForm()
     if request.method == "POST":
@@ -78,8 +73,6 @@ def teacher_signup(request):
 
 
 # student signup
-
-
 def student_signup(request):
     form1 = forms.StudentUserForm()
     form2 = forms.StudentFormAdditional()

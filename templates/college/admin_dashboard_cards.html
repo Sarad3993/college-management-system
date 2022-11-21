@@ -43,6 +43,7 @@
       margin-bottom: 30px;
       -webkit-transition: all 0.3s ease-in-out;
       transition: all 0.3s ease-in-out;
+      height:150px;
       
     }
 
@@ -66,79 +67,66 @@
 
 <body>
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-  <div class="container-fluid">
-    <div class="row" style="margin-left:4%;">
-
+  <div class="container">
+    <div class="row" style="margin-left:-2%">
       <div class="col-md-4 col-xl-3">
         <div class="card bg-c-blue order-card">
           <div class="card-block">
             <h6 class="m-b-20">Total Teacher</h6>
-            <h2 class="text-right"><i class="fas fa-chalkboard-teacher f-left"></i><span>{{teachercount}}</span></h2>
-            
+            <h2 class="text-right"><i class="fas fa-chalkboard-teacher f-left"></i><span>{{teachercount}}</span>
+            </h2>
+              <hr>
+              <a href="admin-view-teacher" style="text-decoration:none;color:white;">
+              <p style="font-size:15px;">View More&nbsp;<i class="fa fa-arrow-circle-right" style="font-size:15px;"></i></p>
+            </a>
           </div>
         </div>
       </div>
+    
 
       <div class="col-md-4 col-xl-3">
         <div class="card bg-c-blue order-card">
           <div class="card-block">
             <h6 class="m-b-20">Total Student</h6>
             <h2 class="text-right"><i class="fas fa-user-graduate f-left"></i><span>{{studentcount}}</span></h2>
-          
+            <hr>
+            <a href="admin-view-student" style="text-decoration:none;color:white;">
+            <p style="font-size:15px;">View More&nbsp;<i class="fa fa-arrow-circle-right" style="font-size:15px;"></i></p>
+          </a>
           </div>
         </div>
       </div>
+
 
       <div class="col-md-4 col-xl-3">
         <div class="card bg-c-green order-card">
           <div class="card-block">
             <h6 class="m-b-20">Pending Teacher</h6>
-            <h2 class="text-right"><i class="fas fa-spinner f-left"></i><span class="f-right">{{pendingteachercount}}</span></h2>
-        
+            <h2 class="text-right"><i class="fas fa-spinner f-left"></i><span>{{pendingteachercount}}</span></h2>
+            <hr>
+            <a href="admin-approve-teacher" style="text-decoration:none;color:white;">
+            <p style="font-size:15px;">View More&nbsp;<i class="fa fa-arrow-circle-right" style="font-size:15px;"></i></p>
+          </a>
           </div>
         </div>
       </div>
-
-    </div>
-  
-    <div class="row" style="margin-left:4%;">
 
       <div class="col-md-4 col-xl-3">
         <div class="card bg-c-green order-card">
           <div class="card-block">
-            <h6 class="m-b-20">Pending Admissions</h6>
-            <h2 class="text-right"><i class="fas fa-spinner f-left"></i><span class="f-right">{{pendingstudentcount}}</span></h2>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-4 col-xl-3">
-        <div class="card bg-c-yellow order-card">
-          <div class="card-block">
-            <h6 class="m-b-20">Teacher's Salary</h6>
-            <h2 class="text-right"><i class="fas fa-dollar f-left"></i><span>{{teachersalary}}</span></h2>
-         
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-4 col-xl-3">
-        <div class="card bg-c-yellow order-card">
-          <div class="card-block">
-            <h6 class="m-b-20">Student's Fee</h6>
-            <h2 class="text-right"><i class="fas fa-dollar f-left"></i><span>{{studentfee}}</span></h2>
+            <h6 class="m-b-20">Pending Admission</h6>
+            <h2 class="text-right"><i class="fas fa-spinner f-left"></i><span>{{pendingstudentcount}}</span></h2>
+            <hr>
+            <a href="admin-approve-student" style="text-decoration:none;color:white;">
+            <p style="font-size:15px;">View More&nbsp;<i class="fa fa-arrow-circle-right" style="font-size:15px;"></i></p>
+          </a>
           </div>
         </div>
       </div>
     </div>
-    
   </div>
   
-
   <script src="http://netdna.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
-  <script type="text/javascript">
-
-  </script>
+  <script type="text/javascript"></script>
 </body>
-
 </html>
