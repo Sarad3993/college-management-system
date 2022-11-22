@@ -11,6 +11,7 @@
       padding: 20px;
       color: white;
       font-weight:normal;
+      height:195px;
     }
 
     .alert-complain{
@@ -20,6 +21,17 @@
       color: white;
       border-radius:5px;
       font-weight:normal;
+      height:195px;
+    }
+
+    .alert-leave{
+      margin-left: 6%;
+      margin-right: 25%;
+      padding: 20px;
+      color: white;
+      border-radius:5px;
+      font-weight:normal;
+      height:195px;
     }
 
     .w3-panel h4 {
@@ -30,13 +42,34 @@
     .w3-panel{
       margin-left: 6%;
       margin-right: 25%;
-    }
+      height:50px;
+     }
 
-    .white-color {
+    .resolve-complain{
       color:white;
       font-size:25px;
       float:right;
   }
+
+  .approve-leave{
+    color:white;
+    font-size:50px;
+    float:right;
+     }
+
+     .delete-notice{
+      color:white;
+      font-size:50px;
+      float:right;
+       }
+
+  #bstyle{
+       
+    background:white; 
+    color:black;
+    border-radius:3px;
+  }
+   
   </style>
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">    
@@ -53,21 +86,35 @@
 
 {%for n in notice%}
 <div class="alert bg-c-blue">
-  <a href="{% url 'delete-notice' n.id  %}"><i class="bi bi-trash white-color"></i> </a>
-  <b>Posted on :</b> {{n.date}} </s><br><b>By :</b> {{n.by}} <br> <b>Topic :</b> {{n.topic}}<br> {{n.message}}
+  <a class="btn btn-danger btn-xs delete-notice" href="{% url 'delete-notice' n.id  %}">Delete</a>
+  <b id="bstyle" >Posted on </b>&ensp; {{n.date}} </s><br><b>By </b>&ensp; {{n.by}} <br> <b>Topic </b>&ensp; {{n.topic}}<br> {{n.message}}
 </div>
 {%endfor%}
 
 
 <br><br>
 <div class="w3-panel w3-black">
-  <h4 style="padding:15px;"> <b> Student Complains </b> </h4>
+  <h4 style="padding:15px;"> <b> Student Complains&nbsp;/&nbsp;Issues </b> </h4>
 </div><br>
 
 {%for c in complain%}
 <div class="alert-complain bg-c-pink">
-  <a href="{% url 'delete-complain' c.id  %}"><i class="bi bi-trash white-color"></i> </a>
- <b> Posted on :</b> {{c.date}} <br> <b>By :</b> {{c.by}} <br> <b>Topic :</b> {{c.topic}} <br> {{c.message}}
+  <a class="btn btn-info btn-xs resolve-complain" href="{% url 'resolve-complain' c.id  %}">Resolved</a>
+ <b id="bstyle"> Posted on </b>&ensp; {{c.date}} <br> <b>By </b>&ensp; {{c.by}} <br> <b>Topic </b>&ensp; {{c.topic}} <br> {{c.message}}
+</div>
+<br>
+{%endfor%}
+
+
+<br><br>
+<div class="w3-panel w3-black">
+  <h4 style="padding:15px;"> <b> Teacher's Leave Request </b> </h4>
+</div><br>
+
+{%for l in leave%}
+<div class="alert-leave bg-c-yellow">
+  <a class="btn btn-success btn-xs approve-leave" href="{% url 'approve-leave' l.id  %}">Approve</a>
+ <b id="bstyle"> Posted on </b>&ensp; {{l.date}} <br> <b>By </b>&ensp; {{l.by}} <br> <b>Topic </b>&ensp; {{l.topic}} <br> {{l.message}}
 </div>
 <br>
 {%endfor%}

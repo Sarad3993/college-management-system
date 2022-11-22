@@ -43,6 +43,7 @@
       margin-bottom: 30px;
       -webkit-transition: all 0.3s ease-in-out;
       transition: all 0.3s ease-in-out;
+      height:150px;
     }
 
     .card .card-block {
@@ -74,6 +75,10 @@
             <h6 class="m-b-20">Name</h6>
             <h2 class="text-right"><i class="fas fa-user-tie f-left"></i></h2>
             <p> &emsp;<span style="font-size: 18px;">{{request.user.first_name}}&nbsp; {{request.user.last_name}}</span></p>
+            <hr>
+              <a href="admin-view-teacher" style="text-decoration:none;color:white;">
+              <p style="font-size:15px;">Click to Edit&nbsp;<i class="fa fa-arrow-circle-right" style="font-size:15px;"></i></p>
+            </a>
           </div>
         </div>
       </div>
@@ -84,17 +89,24 @@
             <h6 class="m-b-20">Faculty</h6>
             <h2 class="text-right"><i class="fa fa-graduation-cap f-left"></i></h2>
             <p>&emsp;<span style="font-size: 18px;">{{faculty}}</span></p>
-
+            <hr>
+              <a href="admin-view-teacher" style="text-decoration:none;color:white;">
+              <p style="font-size:15px;">Click to Edit&nbsp;<i class="fa fa-arrow-circle-right" style="font-size:15px;"></i></p>
+            </a>
           </div>
         </div>
       </div>
 
       <div class="col-md-4 col-xl-3">
-        <div class="card bg-c-yellow order-card">
+        <div class="card bg-c-pink order-card">
           <div class="card-block">
             <h6 class="m-b-20">Roll</h6>
             <h2 class="text-right"><i class="fas fa-list-ol f-left"></i></h2>
             <p>&emsp;<span style="font-size: 18px;">{{roll}}</span></p>
+            <hr>
+              <a href="admin-view-teacher" style="text-decoration:none;color:white;">
+              <p style="font-size:15px;">Click to Edit&nbsp;<i class="fa fa-arrow-circle-right" style="font-size:15px;"></i></p>
+            </a>
           </div>
         </div>
       </div>
@@ -103,11 +115,15 @@
       <div class="row" style="margin-left:4%;">
 
       <div class="col-md-4 col-xl-3">
-        <div class="card bg-c-yellow order-card">
+        <div class="card bg-c-green order-card">
           <div class="card-block">
             <h6 class="m-b-20">Address</h6>
             <h2 class="text-right"><i class="fa fa-map-marker f-left"></i></h2>
             <p>&emsp;<span style="font-size: 18px;">{{address}}</span></p>
+            <hr>
+              <a href="admin-view-teacher" style="text-decoration:none;color:white;">
+              <p style="font-size:15px;">Click to Edit&nbsp;<i class="fa fa-arrow-circle-right" style="font-size:15px;"></i></p>
+            </a>
           </div>
         </div>
       </div>
@@ -118,12 +134,16 @@
             <h6 class="m-b-20">Contact</h6>
             <h2 class="text-right"><i class="fas fa-mobile-alt f-left"></i></h2>
             <p>&emsp;<span style="font-size: 18px;">{{phone_no}}</span></p>
+            <hr>
+              <a href="update-student" style="text-decoration:none;color:white;">
+              <p style="font-size:15px;">Click to Edit&nbsp;<i class="fa fa-arrow-circle-right" style="font-size:15px;"></i></p>
+            </a>
           </div>
         </div>
       </div>
 
       <div class="col-md-4 col-xl-3">
-        <div class="card bg-c-green order-card">
+        <div class="card bg-c-yellow order-card">
           <div class="card-block">
             <h6 class="m-b-20">Fee</h6>
             <h2 class="text-right"><i class="fas fa-usd f-left"></i></h2>

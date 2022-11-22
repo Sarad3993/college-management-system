@@ -40,12 +40,15 @@ urlpatterns = [
     path('delete-notice/<int:pk>', views.admin_delete_notice,name='delete-notice'),
     path('teacher-dashboard', views.teacher_dashboard,name='teacher-dashboard'),
     path('teacher-notice', views.teacher_notice,name='teacher-notice'),
+    path('teacher-leave', views.teacher_leave,name='teacher-leave'),
     path('teacher-attendance', views.teacher_attendance,name='teacher-attendance'),
     path('teacher-take-attendance/<str:faculty>', views.take_attendance,name='teacher-take-attendance'),
     path('teacher-view-attendance/<str:faculty>', views.view_attendance,name='teacher-view-attendance'),
     path('student-dashboard', views.student_dashboard,name='student-dashboard'),
     path('student-complain', views.student_complain,name='student-complain'),
-    path('delete-complain/<int:pk>', views.admin_delete_complain,name='delete-complain'),
+    path('resolve-complain/<int:pk>', views.admin_resolve_complain,name='resolve-complain'),
+    path('approve-leave/<int:pk>', views.admin_approve_teacher_leave,name='approve-leave'),
+    
     
     
 ]

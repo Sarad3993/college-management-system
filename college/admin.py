@@ -18,9 +18,13 @@ class AttendanceAdmin(admin.ModelAdmin):
 class ComplainAdmin(admin.ModelAdmin):
     pass
 
+class LeaveAdmin(admin.ModelAdmin):
+    pass
+
 
 admin.site.register(Student,StudentAdmin)
 admin.site.register(Teacher,TeacherAdmin)
 admin.site.register(Notice,NoticeAdmin)
 admin.site.register(Attendance, AttendanceAdmin)
 admin.site.register(Complain, ComplainAdmin)
+admin.site.register(Leave,LeaveAdmin)

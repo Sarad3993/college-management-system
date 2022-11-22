@@ -147,6 +147,7 @@ def admin_dashboard(request):
 
     notice = models.Notice.objects.all()
     complain = models.Complain.objects.all()
+    leave = models.Leave.objects.all()
 
     # aggregate function returns dictionary so fetch data from dictionay
     mydict = {
@@ -157,7 +158,8 @@ def admin_dashboard(request):
         "teachersalary": teachersalary["salary__sum"],
         "studentfee": studentfee["fee__sum"],
         "notice": notice,
-        "complain":complain
+        "complain":complain,
+        "leave":leave,
     }
 
     return render(request, "college/admin_dashboard.html", context=mydict)
@@ -228,30 +230,6 @@ def disapprove_teacher(request,pk):
     user.delete()
     teacher.delete()
     return redirect('admin-approve-teacher')
-
-
-@login_required(login_url='adminlogin')
-@user_passes_test(is_admin)
-def update_teacher(request,pk):
-    teacher=models.Teacher.objects.get(id=pk)
-    user=models.User.objects.get(id=teacher.user_id)
-
-    form1=forms.TeacherUserForm(instance=user)
-    form2=forms.TeacherFormAdditional(instance=teacher)
-    mydict={'form1':form1,'form2':form2}
-
-    if request.method=='POST':
-        form1=forms.TeacherUserForm(request.POST,instance=user)
-        form2=forms.TeacherFormAdditional(request.POST,instance=teacher)
-        if form1.is_valid() and form2.is_valid():
-            user=form1.save()
-            user.set_password(user.password)
-            user.save()
-            f2=form2.save(commit=False)
-            f2.status=True
-            f2.save()
-            return redirect('admin-view-teacher')
-    return render(request,'college/admin_update_teacher.html',context=mydict)
 
 
 @login_required(login_url='adminlogin')
@@ -330,28 +308,6 @@ def disapprove_student(request,pk):
 
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)
-def update_student(request,pk):
-    student=models.Student.objects.get(id=pk)
-    user=models.User.objects.get(id=student.user_id)
-    form1=forms.StudentUserForm(instance=user)
-    form2=forms.StudentFormAdditional(instance=student)
-    mydict={'form1':form1,'form2':form2}
-    if request.method=='POST':
-        form1=forms.StudentUserForm(request.POST,instance=user)
-        form2=forms.StudentFormAdditional(request.POST,instance=student)
-        if form1.is_valid() and form2.is_valid():
-            user=form1.save()
-            user.set_password(user.password)
-            user.save()
-            f2=form2.save(commit=False)
-            f2.status=True
-            f2.save()
-            return redirect('admin-view-student')
-    return render(request,'college/admin_update_student.html',context=mydict)
-
-
-@login_required(login_url='adminlogin')
-@user_passes_test(is_admin)
 def delete_student(request,pk):
     student=models.Student.objects.get(id=pk)
     user=models.User.objects.get(id=student.user_id)
@@ -389,14 +345,40 @@ def admin_delete_notice(request,pk):
 def teacher_dashboard(request):
     teacherdata=models.Teacher.objects.all().filter(status=True,user_id=request.user.id)
     notice=models.Notice.objects.all()
+    leave=models.Leave.objects.all()
     mydict={
         'salary':teacherdata[0].salary,
         'address':teacherdata[0].address,
         'phone_no':teacherdata[0].phone_no,
         'date':teacherdata[0].joindate,
-        'notice':notice
+        'notice':notice,
+        'leave':leave,
+        
     }
     return render(request,'college/teacher_dashboard.html',context=mydict)
+
+@login_required(login_url='teacherlogin')
+@user_passes_test(is_teacher)
+def update_teacher(request,pk):
+    teacher=models.Teacher.objects.get(id=pk)
+    user=models.User.objects.get(id=teacher.user_id)
+
+    form1=forms.TeacherUserForm(instance=user)
+    form2=forms.TeacherFormAdditional(instance=teacher)
+    mydict={'form1':form1,'form2':form2}
+
+    if request.method=='POST':
+        form1=forms.TeacherUserForm(request.POST,instance=user)
+        form2=forms.TeacherFormAdditional(request.POST,instance=teacher)
+        if form1.is_valid() and form2.is_valid():
+            user=form1.save()
+            user.set_password(user.password)
+            user.save()
+            f2=form2.save(commit=False)
+            f2.status=True
+            f2.save()
+            return redirect('teacher-dashboard')
+    return render(request,'college/update_teacher.html',context=mydict)
 
 #notice by teacher
 @login_required(login_url='teacherlogin')
@@ -411,6 +393,20 @@ def teacher_notice(request):
             form.save()
             return redirect('teacher-dashboard')
     return render(request,'college/teacher_notice.html',{'form':form})
+
+
+@login_required(login_url='teacherlogin')
+@user_passes_test(is_teacher)
+def teacher_leave(request):
+    form=forms.LeaveForm()
+    if request.method=='POST':
+        form=forms.LeaveForm(request.POST)
+        if form.is_valid():
+            form=form.save(commit=False)
+            form.by=request.user.first_name
+            form.save()
+            return redirect('teacher-dashboard')
+    return render(request,'college/teacher_leave.html',{'form':form})
 
 # teacher attendance view
 @login_required(login_url='teacherlogin')
@@ -488,10 +484,39 @@ def student_complain(request):
             return redirect('student-dashboard')
     return render(request,'college/student_complain.html',{'form':form})
 
+@login_required(login_url='studentlogin')
+@user_passes_test(is_student)
+def update_student(request,pk):
+    student=models.Student.objects.get(id=pk)
+    user=models.User.objects.get(id=student.user_id)
+    form1=forms.StudentUserForm(instance=user)
+    form2=forms.StudentFormAdditional(instance=student)
+    mydict={'form1':form1,'form2':form2}
+    if request.method=='POST':
+        form1=forms.StudentUserForm(request.POST,instance=user)
+        form2=forms.StudentFormAdditional(request.POST,instance=student)
+        if form1.is_valid() and form2.is_valid():
+            user=form1.save()
+            user.set_password(user.password)
+            user.save()
+            f2=form2.save(commit=False)
+            f2.status=True
+            f2.save()
+            return redirect('student-dashboard')
+    return render(request,'college/update_student.html',context=mydict)
+
 
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)
-def admin_delete_complain(request,pk):
+def admin_resolve_complain(request,pk):
     complain=models.Complain.objects.get(id=pk)
     complain.delete()
+    return redirect('admin-dashboard')
+
+
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
+def admin_approve_teacher_leave(request,pk):
+    leave=models.Leave.objects.get(id=pk)
+    leave.delete()
     return redirect('admin-dashboard')

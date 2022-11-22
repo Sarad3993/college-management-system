@@ -21,12 +21,20 @@
     }
 
     .row {
-      margin: 100px;
+      margin: 50px;
     }
 
     .btnSubmit {
       text-align: center;
     }
+    .btn{
+      float:right;
+    }
+    .form-control{
+      width:230px;
+      margin-left:8px;
+    }
+    
   </style>
 </head>
 
@@ -39,12 +47,12 @@
         </div>
 
         <table
-          class="table table-hover table-striped table-bordered"
+          class="table table-hover"
           id="dev-table">
           <thead>
             <tr>
               <th>Student Name</th>
-              <th>Present/Absent</th>
+              <th>Present&nbsp;/&nbsp;Absent</th>
             </tr>
           </thead>
 
@@ -56,8 +64,12 @@
           </tr>
           {%endfor%}
         </table>
+        <br>
+        <br>
+        <br>
         {% render_field attendanceform.date class="form-control" placeholder="Enter Date: mm/dd/yyyy" %}
-        <input type="submit" style="margin-left: 50px; margin-top: 20px; margin-bottom: 20px" name="submit" class="btn btn-success" value="Submit Attendance"/>
+        <input type="submit" style="margin-left:8px; margin-top: 60px;" name="submit" class="btn btn-success" value="Submit Attendance"/>
+        <br>
       </div>
     </div>
   </div>

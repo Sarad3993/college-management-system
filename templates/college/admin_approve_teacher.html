@@ -18,7 +18,26 @@
     }
 
     .row {
-      margin: 100px;
+      margin-left:39px;
+      margin-right: 200px;
+      margin-top:25px;
+    }
+    
+    table {
+      table-layout:fixed;
+      width: inherit !important;
+    }
+    td, th {
+      width:150px !important;
+      height:75px !important;
+      max-width:150px !important;
+      max-height:75px !important;
+      min-width:150px !important;
+      min-height:75px !important;
+    }
+    .btn{
+      padding:8px;
+      margin-left:2px;
     }
   </style>
 
@@ -35,7 +54,7 @@
 
       </div>
 
-      <table class="table table-hover table-striped table-bordered" id="dev-table">
+      <table class="table table-hover" id="dev-table">
         <thead>
 
           <tr>
@@ -55,8 +74,9 @@
           <td>{{t.address}}</td>
           <td>{{t.salary}}</td>
           <td>{{t.joindate}}</td>
-          <td><a class="btn btn-success btn-xs" href="{% url 'approve-teacher' t.id  %}"><span class="glyphicon glyphicon-ok"></span></a>
-          <a class="btn btn-danger btn-xs" href="{% url 'disapprove-teacher' t.id  %}"><span class="glyphicon glyphicon-trash"></span></a></td>
+          <td><a class="btn btn-success btn-xs" href="{% url 'approve-teacher' t.id  %}">Approve</span></a>
+
+            <a class="btn btn-danger btn-xs" href="{% url 'disapprove-teacher' t.id  %}">Reject</a></td>  
         </tr> 
 
         {% endfor %}

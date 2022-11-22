@@ -16,7 +16,7 @@
     }
 
     .row {
-      margin: 100px;
+      margin: 50px;
     }
   </style>
 </head>
@@ -26,12 +26,12 @@
       <div class="panel-heading">
         <h6 class="panel-title">Faculty &nbsp;{{faculty}} |&nbsp; Date {{date}}</h6>
       </div>
-      <table class="table table-hover table-striped table-bordered" id="dev-table">
+      <table class="table table-hover" id="dev-table">
         <thead>
           <tr>
             <th>Student Name</th>
             <th>Student Roll</th>
-            <th>Present/Absent</th>
+            <th>Present&nbsp;/&nbsp;Absent</th>
           </tr>
         </thead>
         {%for attendancedata,studentdata in attendance_list %}

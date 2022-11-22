@@ -58,3 +58,10 @@ class ComplainForm(forms.ModelForm):
     class Meta:
         model = models.Complain
         fields = '__all__'
+        
+        
+# complain related form
+class LeaveForm(forms.ModelForm):
+    class Meta:
+        model = models.Leave
+        fields = '__all__'

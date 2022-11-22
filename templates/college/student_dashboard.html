@@ -12,6 +12,7 @@
       background-color: #bf1741;
       color: white;
       font-weight:normal;
+      height:195px;
     }
     .alert-complain{
       margin-left: 6%;
@@ -21,6 +22,7 @@
       color: white;
       border-radius:5px;
       font-weight:normal;
+      height:195px;
     }
 
     .w3-panel p {
@@ -35,6 +37,14 @@
     .w3-panel{
     margin-left: 6%;
     margin-right: 25%;
+    height:50px;
+    }
+
+    #bstyle{
+       
+      background:white; 
+      color:black;
+      border-radius:3px;
     }
 
    
@@ -54,18 +64,18 @@
 
 {%for n in notice%}
 <div class="alert bg-c-blue">
-  <b>Posted on :</b> {{n.date}} <br><b>By :</b> {{n.by}} <br> <b>Topic :</b> {{n.topic}}<br> {{n.message}}
+  <b id="bstyle">Posted on </b>&ensp; {{n.date}} <br><b>By </b>&ensp; {{n.by}} <br> <b>Topic </b>&ensp; {{n.topic}}<br> {{n.message}}
 </div>
 {%endfor%}
 
 <br><br>
 <div class="w3-panel w3-black">
-  <h4 style="padding:15px;"> <b> My Complains </b></h4>
+  <h4 style="padding:15px;"> <b> Complains </b></h4>
 </div><br>
 
 {%for c in complain%}
 <div class="alert-complain bg-c-pink">
-  <b>Posted on :</b> {{c.date}} <br><b>By :</b> {{c.by}} <br> <b>Topic :</b> {{c.topic}} <br> {{c.message}}
+  <b id="bstyle">Posted on </b>&ensp; {{c.date}} <br><b>By </b>&ensp; {{c.by}} <br> <b>Topic </b>&ensp; {{c.topic}} <br> {{c.message}}
 </div>
 <br>
 {%endfor%}

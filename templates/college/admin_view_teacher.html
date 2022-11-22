@@ -15,8 +15,27 @@
     h6{
       text-align:center;
     }
-    .row{
-      margin:100px;
+    .row {
+      margin-left:39px;
+      margin-right: 200px;
+      margin-top:25px;
+    }
+
+    table {
+      table-layout:fixed;
+      width: inherit !important;
+    }
+    td, th {
+      width:150px !important;
+      height:75px !important;
+      max-width:150px !important;
+      max-height:75px !important;
+      min-width:150px !important;
+      min-height:75px !important;
+    }
+    .btn{
+      padding:8px;
+      margin-left:2px;
     }
   </style>
 
@@ -34,7 +53,7 @@
 
 					</div>
 
-					<table class="table table-hover table-striped table-bordered" id="dev-table">
+					<table class="table table-hover" id="dev-table">
             <thead>
 
                 <tr>
@@ -54,9 +73,9 @@
                   <td>{{t.address}}</td>
                   <td>Rs.{{t.salary}}</td>
                   <td>{{t.joindate}}</td>
-                  <td><a class="btn btn-primary btn-xs" href="{% url 'update-teacher' t.id  %}"  ><span class="glyphicon glyphicon-edit"></span></a>
-
-                  <a class="btn btn-danger btn-xs" href="{% url 'delete-teacher' t.id  %}"  ><span class="glyphicon glyphicon-trash"></span></a></td>
+                  {% comment %} <td><a class="btn btn-primary btn-xs" href="{% url 'update-teacher' t.id  %}"  ><span class="glyphicon glyphicon-edit"></span></a> {% endcomment %}
+              <td>
+                  <a class="btn btn-danger btn-xs" href="{% url 'delete-teacher' t.id  %}">Delete</a></td>
 
               </tr>
 

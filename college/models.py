@@ -64,3 +64,10 @@ class Complain(models.Model):
     by=models.CharField(max_length=20,blank=True,default='college')
     topic = models.CharField(max_length=100,blank=True)
     message=models.CharField(max_length=600)
+    
+    
+class Leave(models.Model):
+    date=models.DateField(auto_now=True)
+    by=models.CharField(max_length=20,blank=True,default='college')
+    topic = models.CharField(max_length=100,blank=True)
+    message=models.CharField(max_length=700)

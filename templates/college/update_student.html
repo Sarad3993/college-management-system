@@ -1,4 +1,4 @@
-{% extends 'college/adminbase.html' %}
+{% extends 'college/studentbase.html' %}
 
 {% load widget_tweaks %}
 
@@ -51,7 +51,7 @@
   <div class="container register-form">
     <div class="form">
       <div class="note">
-        <p>Update Student Details</p>
+        <p>Update Your Details</p>
       </div>
 
       <div class="form-content">
@@ -73,11 +73,6 @@
             <div class="form-group">
               {% render_field form2.address class="form-control" placeholder="Address" %}
             </div>
-
-            <div class="form-group">
-              {% render_field form2.fee class="form-control" placeholder="Fee (Rs.)" %}
-            </div>
-          </div>
 
           <div class="col-md-6">
             <div class="form-group">
