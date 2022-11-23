@@ -23,8 +23,6 @@ class Student(models.Model):
     @property
     def get_id(self):
         return self.user.id
-    
-    
 class Teacher(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     salary= models.PositiveIntegerField(blank=False)

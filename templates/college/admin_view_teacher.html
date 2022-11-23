@@ -73,8 +73,7 @@
                   <td>{{t.address}}</td>
                   <td>Rs.&nbsp;{{t.salary}}</td>
                   <td>{{t.joindate}}</td>
-                  {% comment %} <td><a class="btn btn-primary btn-xs" href="{% url 'update-teacher' t.id  %}"  ><span class="glyphicon glyphicon-edit"></span></a> {% endcomment %}
-              <td>
+                  <td>
                   <a class="btn btn-danger btn-xs" href="{% url 'delete-teacher' t.id  %}">Delete</a></td>
 
               </tr>

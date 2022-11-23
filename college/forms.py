@@ -4,14 +4,12 @@ from college import models
 
 
 # signup form for admin 
-
 class AdminSignupForm(forms.ModelForm):
     class Meta:
         model = User
         fields =['first_name','last_name','username','password']
         
 # teacher signup form
-
 class TeacherUserForm(forms.ModelForm):
     class Meta:
         model=User
@@ -19,12 +17,9 @@ class TeacherUserForm(forms.ModelForm):
 class TeacherFormAdditional(forms.ModelForm):
     class Meta:
         model=models.Teacher
-        fields=['salary','phone_no','address','status']
-        
-
+        fields=['salary','phone_no','address','status'] 
         
 # student signup form
-
 class StudentUserForm(forms.ModelForm):
     class Meta:
         model=User
@@ -43,7 +38,6 @@ class NoticeForm(forms.ModelForm):
         
 
 # attendance related form 
-
 attendance_choices = (('Present','Present'),('Absent','Absent'))
 class AttendanceForm(forms.Form):
     present = forms.ChoiceField(choices=attendance_choices)

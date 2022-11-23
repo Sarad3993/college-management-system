@@ -18,16 +18,16 @@
     .w3-panel p {
       padding-top: 10px;
     }
-    .w3-panel{
-    margin-left: 6%;
-      margin-right: 25%;
-    }
 
     .w3-panel h4 {
       padding-top: 10px;
       text-align:center;
-      height:50px;
       
+    }
+    .w3-panel{
+    margin-left: 6%;
+    margin-right: 25%;
+    height:50px;
     }
 
     #bstyle{
@@ -42,7 +42,9 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"> 
 
 </head>
-<br>
+<div class="w3-panel w3-black ">
+  <h4 style="padding:15px;"><b> My Details </b></h4>
+</div><br>
 
 {%include 'college/teacher_dashboard_cards.html'%}
 
@@ -60,13 +62,13 @@
 
 <br><br>
 <div class="w3-panel w3-black ">
-  <h4 style="padding:15px;"><b> Notice Board </b></h4>
+  <h4 style="padding:15px;"><b> Leave Request</b></h4>
 </div><br>
 
 {%for l in leave%}
 
 <div class="alert bg-c-yellow">
-  <b id="bstyle"> My Leaves </b> &ensp;{{l.date}} </s><br><b>By</b>&ensp; {{l.by}} <br> <b>Topic </b>&ensp; {{l.topic}}<br> {{l.message}}
+  <b id="bstyle"> Posted on</b> &ensp;{{l.date}} </s><br><b>By</b>&ensp; {{l.by}} <br> <b>Topic </b>&ensp; {{l.topic}}<br> {{l.message}}
 </div>
 {%endfor%}
 <hr>

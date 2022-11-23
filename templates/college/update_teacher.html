@@ -1,4 +1,4 @@
-{% extends 'college/teacherbase.html' %}
+{% extends 'college/adminbase.html' %}
 {% load widget_tweaks %}
 
 {% block content %}
@@ -60,9 +60,6 @@
               {% render_field form1.first_name class="form-control" placeholder="First Name" %}
             </div>
             <div class="form-group">
-              {% render_field form1.username class="form-control" placeholder="Username" %}
-            </div>
-            <div class="form-group">
               {% render_field form2.phone_no class="form-control" placeholder="Contact" %}
             </div>
 
@@ -72,10 +69,10 @@
               {% render_field form1.last_name class="form-control" placeholder="Last Name" %}
             </div>
             <div class="form-group">
-              {% render_field form1.password class="form-control" type="password" placeholder="Password" %}
+              {% render_field form2.address class="form-control" placeholder="Address" %}
             </div>
             <div class="form-group">
-              {% render_field form2.address class="form-control" placeholder="Address" %}
+              {% render_field form2.salary class="form-control" placeholder="Salary" %}
             </div>
           </div>
         <br>
