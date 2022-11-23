@@ -71,24 +71,17 @@
                   <td> {{t.get_name}}</td>
                   <td>{{t.phone_no}}</td>
                   <td>{{t.address}}</td>
-                  <td>Rs.{{t.salary}}</td>
+                  <td>Rs.&nbsp;{{t.salary}}</td>
                   <td>{{t.joindate}}</td>
                   {% comment %} <td><a class="btn btn-primary btn-xs" href="{% url 'update-teacher' t.id  %}"  ><span class="glyphicon glyphicon-edit"></span></a> {% endcomment %}
               <td>
                   <a class="btn btn-danger btn-xs" href="{% url 'delete-teacher' t.id  %}">Delete</a></td>
 
               </tr>
-
             {% endfor %}
 					</table>
 				</div>
-
-
 				</div>
 			</div>
-
-
-
-
 
 {% endblock content %}
