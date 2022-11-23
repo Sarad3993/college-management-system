@@ -69,3 +69,4 @@ class Leave(models.Model):
     by=models.CharField(max_length=20,blank=True,default='college')
     topic = models.CharField(max_length=100,blank=True)
     message=models.CharField(max_length=700)
+

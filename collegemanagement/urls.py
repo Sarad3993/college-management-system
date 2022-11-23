@@ -3,7 +3,7 @@
 from django.contrib import admin
 from django.urls import path
 from college import views
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import LoginView,LogoutView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -46,5 +46,6 @@ urlpatterns = [
     path('student-complain', views.student_complain,name='student-complain'),
     path('resolve-complain/<int:pk>', views.admin_resolve_complain,name='resolve-complain'),
     path('approve-leave/<int:pk>', views.admin_approve_teacher_leave,name='approve-leave'),
-   
+
+
 ]
