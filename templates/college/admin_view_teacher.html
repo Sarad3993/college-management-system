@@ -74,8 +74,9 @@
                   <td>Rs.&nbsp;{{t.salary}}</td>
                   <td>{{t.joindate}}</td>
                   <td>
-                  <a class="btn btn-danger btn-xs" href="{% url 'delete-teacher' t.id  %}">Delete</a></td>
-
+                  <a class="btn btn-info btn-xs" href="{% url 'update-teacher' t.id  %}">Update</a>
+                  <a class="btn btn-danger btn-xs" href="{% url 'delete-teacher' t.id  %}">Delete</a>
+                </td>
               </tr>
             {% endfor %}
 					</table>

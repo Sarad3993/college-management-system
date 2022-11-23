@@ -423,3 +423,49 @@ def admin_approve_teacher_leave(request,pk):
     leave=models.Leave.objects.get(id=pk)
     leave.delete()
     return redirect('admin-dashboard')
+
+
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
+def update_teacher(request,pk):
+    teacher=models.Teacher.objects.get(id=pk)
+    user=models.User.objects.get(id=teacher.user_id)
+
+    form1=forms.TeacherUserForm(instance=user)
+    form2=forms.TeacherFormAdditional(instance=teacher)
+    mydict={'form1':form1,'form2':form2}
+
+    if request.method=='POST':
+        form1=forms.TeacherUserForm(request.POST,instance=user)
+        form2=forms.TeacherFormAdditional(request.POST,instance=teacher)
+        if form1.is_valid() and form2.is_valid():
+            user=form1.save()
+            user.set_password(user.password)
+            user.save()
+            f2=form2.save(commit=False)
+            f2.status=True
+            f2.save()
+            return redirect('admin-view-teacher')
+    return render(request,'college/update_teacher.html',context=mydict)
+
+
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
+def update_student(request,pk):
+    student=models.Student.objects.get(id=pk)
+    user=models.User.objects.get(id=student.user_id)
+    form1=forms.StudentUserForm(instance=user)
+    form2=forms.StudentFormAdditional(instance=student)
+    mydict={'form1':form1,'form2':form2}
+    if request.method=='POST':
+        form1=forms.StudentUserForm(request.POST,instance=user)
+        form2=forms.StudentFormAdditional(request.POST,instance=student)
+        if form1.is_valid() and form2.is_valid():
+            user=form1.save()
+            user.set_password(user.password)
+            user.save()
+            f2=form2.save(commit=False)
+            f2.status=True
+            f2.save()
+            return redirect('admin-view-student')
+    return render(request,'college/update_student.html',context=mydict)

@@ -71,9 +71,10 @@
           <td>{{s.address}}</td>
           <td>{{s.phone_no}}</td>
           <td>Rs.&nbsp;{{s.fee}}</td>
-
         <td> 
-         <a class="btn btn-danger btn-xs" href="{% url 'delete-student' s.id  %}">Delete</a></td>
+         <a class="btn btn-info btn-xs" href="{% url 'update-student' s.id  %}">Update</a>
+         <a class="btn btn-danger btn-xs" href="{% url 'delete-student' s.id  %}">Delete</a>
+        </td>
         </tr>
 
         {% endfor %}
